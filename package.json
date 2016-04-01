@@ -13,7 +13,7 @@
   "dependencies": {
     "async": "1.x.x",
     "backbone": "1.x.x",
-    "bcrypt": "0.8.x",
+    "bcryptjs": "^2.3.0",
     "body-parser": "1.x.x",
     "compression": "1.x.x",
     "connect-mongo": "1.x.x",
