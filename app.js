@@ -23,6 +23,8 @@ app.config = config;
 //setup the web server
 app.server = http.createServer(app);
 
+
+
 //setup mongoose
 app.db = mongoose.createConnection(config.mongodb.uri);
 app.db.on('error', console.error.bind(console, 'mongoose connection error: '));
@@ -58,9 +60,16 @@ app.use(passport.session());
 app.use(csrf({ cookie: { signed: true } }));
 helmet(app);
 
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+
 //response locals
 app.use(function(req, res, next) {
   res.cookie('_csrfToken', req.csrfToken());
+  res.locals.csrftoken = req.csrfToken();
   res.locals.user = {};
   res.locals.user.defaultReturnUrl = req.user && req.user.defaultReturnUrl();
   res.locals.user.username = req.user && req.user.username;
