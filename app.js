@@ -23,8 +23,6 @@ app.config = config;
 //setup the web server
 app.server = http.createServer(app);
 
-
-
 //setup mongoose
 app.db = mongoose.createConnection(config.mongodb.uri);
 app.db.on('error', console.error.bind(console, 'mongoose connection error: '));

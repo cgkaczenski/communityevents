@@ -1,26 +1,26 @@
 extends ../../layouts/default
 
 block head
-  title Add Event
+  title Edit Event
 
 block body
   div.row
-    div.col-sm-12
+    div.col-sm-8
       div.page-header
-        h1 Add Event
-        form(method='post', action='/events')
+        h1 Edit Event
+        form(method='post', action='/events/update/#{event._id}')
           div.form-group
             label Event Name:
-            input.form-control(type='text', name='name')
+            input.form-control(type='text', name='name' value='#{event.name}')
           div.form-group
             label Event Description:
-            textarea.form-control(type='text', name='description')
+            textarea.form-control(type='text', name='description') #{event.description}
           div.form-group
             label Venu:
-            input.form-control(type='text', name='venu')
+            input.form-control(type='text', name='venu' value='#{event.venu}')
           div.form-group
             label Event Date:
-            input.form-control(type='date', name='date')
+            input.form-control(type='date', name='date' value='#{event.date}')
           div.form-group
             label Start Time:
             input.form-control(type='time', name='startTime')
@@ -31,5 +31,3 @@ block body
             button.btn.btn-primary.btn-signup(type='submit') Create Event
           div.form-group
             input.form-control(type='hidden', name="_csrf", value=csrftoken)
-
-        
